@@ -27,6 +27,16 @@ class GridView: UIView {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+    
+  // MARK: - Layout
+
+  override func layoutSubviews() {
+    super.layoutSubviews()
+        
+    Config.Grid.Dimension.columnCount = max(4, round( self.frame.size.width / 100.0))
+    self.collectionView.collectionViewLayout.invalidateLayout()
+    self.collectionView.layoutIfNeeded()
+  }
 
   // MARK: - Setup
 

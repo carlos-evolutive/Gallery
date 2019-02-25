@@ -70,8 +70,8 @@ public struct Config {
     }
 
     struct Dimension {
-      static let columnCount: CGFloat = 4
-      static let cellSpacing: CGFloat = 2
+      static var columnCount: CGFloat = 4
+      static var cellSpacing: CGFloat = 2
     }
   }
 
