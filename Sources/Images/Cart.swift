@@ -1,7 +1,7 @@
 import UIKit
 import Photos
 
-public protocol CartDelegate: class {
+public protocol CartDelegate: AnyObject {
   func cart(_ cart: Cart, didAdd image: Image, newlyTaken: Bool)
   func cart(_ cart: Cart, didRemove image: Image)
   func cartDidReload(_ cart: Cart)
@@ -39,7 +39,7 @@ public class Cart {
   }
 
   public func remove(_ image: Image) {
-    guard let index = images.index(of: image) else { return }
+      guard let index = images.firstIndex(of: image) else { return }
 
     images.remove(at: index)
 

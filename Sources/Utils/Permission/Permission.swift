@@ -16,12 +16,14 @@ struct Permission {
       switch PHPhotoLibrary.authorizationStatus() {
       case .notDetermined:
         return .notDetermined
-      case .restricted:
+      case .restricted, .limited:
         return .restricted
       case .denied:
         return .denied
       case .authorized:
         return .authorized
+      @unknown default:
+          return .restricted
       }
     }
 
@@ -34,7 +36,7 @@ struct Permission {
 
   struct Camera {
     static var needsPermission: Bool {
-      return Config.tabsToShow.index(of: .cameraTab) != nil
+      return Config.tabsToShow.firstIndex(of: .cameraTab) != nil
     }
 
     static var status: Status {
@@ -47,6 +49,8 @@ struct Permission {
         return .denied
       case .authorized:
         return .authorized
+      @unknown default:
+          return .restricted
       }
     }
 

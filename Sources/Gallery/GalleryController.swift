@@ -1,7 +1,7 @@
 import UIKit
 import AVFoundation
 
-public protocol GalleryControllerDelegate: class {
+public protocol GalleryControllerDelegate: AnyObject {
 
   func galleryController(_ controller: GalleryController, didSelectImages images: [Image])
   func galleryController(_ controller: GalleryController, didSelectVideo video: Video)
@@ -93,7 +93,7 @@ public class GalleryController: UIViewController, PermissionControllerDelegate {
     }
 
     let controller = PagesController(controllers: controllers)
-    controller.selectedIndex = tabsToShow.index(of: Config.initialTab ?? .cameraTab) ?? 0
+      controller.selectedIndex = tabsToShow.firstIndex(of: Config.initialTab ?? .cameraTab) ?? 0
 
     return controller
   }
